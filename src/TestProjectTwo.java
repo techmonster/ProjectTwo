@@ -28,11 +28,15 @@ public class TestProjectTwo {
         LineReader reader2 = new LineReader(changesFile);
 
         //***THE READER IS CLOSED DURING THIS METHOD***//
+        long startTime = System.nanoTime();
         readFile(reader, artistTable, methodOne);
         readFile(reader2, artistTable, methodOne);
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
 
         //**********CREATE FILE A*************
         makeFile(artistTable, fileA);
+        fileA.addRecords("\n"+"Duration of method one: " + duration + " nano seconds.");
         fileA.closeFile();
         //********FILE A IS CLOSED************
 
@@ -43,11 +47,16 @@ public class TestProjectTwo {
         LineReader reader4 = new LineReader(changesFile);
 
         //***THE READER IS CLOSED DURING THIS METHOD***//
+        startTime = System.nanoTime();
         readFile(reader3, artistTable, methodTwo);
         readFile(reader4, artistTable, methodTwo);
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+
 
         //**********CREATE FILE B*************
         makeFile(artistTable, fileB);
+        fileB.addRecords("\n"+"Duration of method two: " + duration + " nano seconds.");
         fileB.closeFile();
         //********FILE B IS CLOSED************
 
@@ -58,11 +67,15 @@ public class TestProjectTwo {
         LineReader reader6 = new LineReader(changesFile);
 
         //***THE READER IS CLOSED DURING THIS METHOD***//
+        startTime = System.nanoTime();
         readFile(reader5, artistTable, methodThree);
         readFile(reader6, artistTable, methodThree);
+        endTime = System.nanoTime();
+        duration = (endTime-startTime);
 
         //**********CREATE FILE C*************
         makeFile(artistTable, fileC);
+        fileC.addRecords("\n"+"Duration of method three: " + duration + " nano seconds.");
         fileC.closeFile();
         //********FILE C IS CLOSED************
 
@@ -86,7 +99,6 @@ public class TestProjectTwo {
         int position;
         int next;
         int deletions = 0;
-
 
         while ((line = reader.readLine()) != null) {
             //split each line at the tabbed space and place in and array
@@ -128,7 +140,6 @@ public class TestProjectTwo {
                     }
 
 
-                    // System.out.println(line);
                 }
             //this block handles the creation of the artist objects
             else {
@@ -140,19 +151,19 @@ public class TestProjectTwo {
                     if (method == 1) {
                         //create a new Artist object
                         catalog = createArtist(ID,artistName);
+
                     }else if (method == 2){
                         catalog = createArtist(ID, artistName, false);
-                        System.out.println(catalog);
+
                     } else {
                         next = (ID + 1);
                         catalog = createArtist(ID,artistName, next);
-                        System.out.println(catalog);
+
                     }
 
                     artistTable.add(catalog);
 
-                    //print the Artist that was added
-                    //System.out.println(catalog.toString());
+
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
@@ -190,16 +201,13 @@ public class TestProjectTwo {
     {
         String records;
 
-        System.out.println("The cart contains the following: ");
         Object[] listArray = aList.toArray();
         for (Object aListArray : listArray) {
             records = (aListArray.toString()+ " \n");
-            //writer.println(record);
+
             aFile.addRecords(records);
-            //  System.out.println(record);
+
         }
 
-        aFile.closeFile();
-        System.out.println();
     }
 }

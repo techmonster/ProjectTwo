@@ -1,7 +1,7 @@
 import java.util.Formatter;
 
 /**
- * Created by delog on 3/19/2016.
+ * Created by Nate Holloway on 3/19/2016.
  * This class will create a file.
  */
 public class CreateFile {
