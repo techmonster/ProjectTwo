@@ -50,7 +50,7 @@ public class Artist {
     //@Override
     public String toString() {
 
-            return getID() + "\t" + getName() + "\t" + getDelete() + "\t" + getNext();
+            return getID() + "\t" + getName();
 
     }
 
