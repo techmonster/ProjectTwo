@@ -51,7 +51,6 @@ public class TestProjectTwo_MethodTwo {
         int index = (artistTable.size());
         int ID;
         int position;
-        int deletions = 0;
 
         while ((line = reader.readLine()) != null) {
             //split each line at the tabbed space and place in and array
@@ -75,8 +74,7 @@ public class TestProjectTwo_MethodTwo {
                     position = (ID - 1);
 
                     artistTable.get(position).setDelete(true);
-                    artistTable.remove(position - deletions);
-                    deletions++;
+
                 }
         }
             //this block handles the creation of the artist objects
@@ -103,7 +101,6 @@ public class TestProjectTwo_MethodTwo {
     }
 
 
-
     private static Artist createArtist(int ID, String name, Boolean delete){
 
         return(new Artist(ID, name, delete));
@@ -115,11 +112,16 @@ public class TestProjectTwo_MethodTwo {
     {
         String records;
 
-        for (Object artist : aList) {
+        for (Artist artist : aList) {
+            if(artist.getDelete().equals(true)){
+                System.out.print("");
+            }
+            else {
                 records = (artist.toString() + "\n");
                 System.out.print(records);
                 aFile.addRecords(records);
 
+            }
         }
 
     }

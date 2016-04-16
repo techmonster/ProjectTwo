@@ -37,12 +37,6 @@ public class TestProjectTwo_MethodThree {
     //********FILE C IS CLOSED************
 
 
-
-
-
-
-
-
 }
 
 
@@ -55,7 +49,6 @@ public class TestProjectTwo_MethodThree {
         int ID;
         int position;
         int next;
-        int deletions = 0;
 
         while ((line = reader.readLine()) != null) {
             //split each line at the tabbed space and place in and array
@@ -81,8 +74,7 @@ public class TestProjectTwo_MethodThree {
                     next = (ID + 1);
                     artistTable.get(position - 1).setNext(next);
                     artistTable.get(position).setNext(0);
-                    artistTable.remove(position - deletions);
-                    deletions++;
+
                 }
             }
 
@@ -120,12 +112,16 @@ public class TestProjectTwo_MethodThree {
     {
         String records;
 
-        Object[] listArray = aList.toArray();
-        for (Object aListArray : listArray) {
-            records = (aListArray.toString()+ " \n");
+        for (Artist artist : aList) {
+            if(artist.getNext()==0){
+                System.out.print("");
+            }
+            else {
+                records = (artist.toString() + "\n");
+                System.out.print(records);
+                aFile.addRecords(records);
 
-            System.out.print(records);
-            aFile.addRecords(records);
+            }
 
         }
 

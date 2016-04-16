@@ -49,11 +49,8 @@ public class Artist {
 
     //@Override
     public String toString() {
-
             return getID() + "\t" + getName();
-
     }
-
 
     public Boolean getDelete() {
         return delete;
@@ -61,6 +58,7 @@ public class Artist {
 
     public void setDelete(Boolean delete) {
         this.delete = delete;
+
     }
 
     public int getNext() {
